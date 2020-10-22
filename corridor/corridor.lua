@@ -12,7 +12,7 @@ function setLimits( min,max )
 	maxPrice 	= max
 end
 
-function volumeStop(index)
+function corridorStop(index)
     if (ds:H(index) >= maxPrice) or (ds:L(index) <= minPrice) then
         os.execute(alarmCommand)
         OnStop()
@@ -42,7 +42,7 @@ function main()
 	end
 
 	interfaceTable:close()
-	ds:SetUpdateCallback(volumeStop);
+	ds:SetUpdateCallback(corridorStop);
 	message(string.format("watch: min=%f max=%f",minPrice,maxPrice))
 
     while is_run do
